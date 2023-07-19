@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 const tempMovieData = [
   {
@@ -49,11 +49,24 @@ const tempWatchedData = [
 
 const average = (arr) =>
   arr.reduce((acc, cur, i, arr) => acc + cur / arr.length, 0);
-
+const KEY = "60fed3fc"
   export default function App() {
     const [movies, setMovies] = useState(tempMovieData);
     const [watched,setWatched] = useState(tempWatchedData)
+    const [isLoading,setIsLoading] = useState(false)
+    const query = "interstellar"
+    useEffect(()=>{
+     async function fetchMovie(){
+      setIsLoading(true)
+      const res = await  fetch(`http://www.omdbapi.com/?i=tt3896198&apikey=${KEY}&s=${query}`)
+      const data = await res.json()
+      setMovies(data.Search)
+      setIsLoading(false)
 
+     }
+     fetchMovie()
+    },[])
+   
     return (
       <>
         <NavBar >
@@ -63,7 +76,7 @@ const average = (arr) =>
         </NavBar>
         <Main>
         <Box>
-        <MovieList movies={movies}/>
+        {isLoading ? <Loader/> : <MovieList movies={movies}/>}
         </Box>
         <Box>
           <>
@@ -76,6 +89,10 @@ const average = (arr) =>
       </>
     );
   }
+
+function Loader(){
+  return <p className="loader">Loading...</p>
+}
 
 function NavBar({children}){
   
