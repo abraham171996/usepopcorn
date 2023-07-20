@@ -54,14 +54,29 @@ const KEY = "60fed3fc"
     const [movies, setMovies] = useState(tempMovieData);
     const [watched,setWatched] = useState(tempWatchedData)
     const [isLoading,setIsLoading] = useState(false)
+    const [error,setError] = useState("")
     const query = "interstellar"
     useEffect(()=>{
      async function fetchMovie(){
+      try{
       setIsLoading(true)
       const res = await  fetch(`http://www.omdbapi.com/?i=tt3896198&apikey=${KEY}&s=${query}`)
+
+      if(!res.ok) throw new Error(
+        "Something went wrong with fetching movies"
+      )
       const data = await res.json()
+      if(data.Response === 'False') throw new Error (
+        "Movie not found"
+      )
       setMovies(data.Search)
-      setIsLoading(false)
+      } catch(err){
+        console.log(err.message);
+        setError(err.message)
+      }
+      finally{
+        setIsLoading(false)
+      }
 
      }
      fetchMovie()
@@ -76,7 +91,10 @@ const KEY = "60fed3fc"
         </NavBar>
         <Main>
         <Box>
-        {isLoading ? <Loader/> : <MovieList movies={movies}/>}
+        {/* {isLoading ? <Loader/> : <MovieList movies={movies}/>} */}
+        {isLoading && <Loader/>}
+        {!isLoading && !error && <MovieList movies={movies}/>}
+        {error && <ErrorMessage message={error}/>}
         </Box>
         <Box>
           <>
@@ -92,6 +110,12 @@ const KEY = "60fed3fc"
 
 function Loader(){
   return <p className="loader">Loading...</p>
+}
+
+function ErrorMessage({message}){
+    <p className="error">
+      <span>⛔</span> {message}
+    </p>
 }
 
 function NavBar({children}){
