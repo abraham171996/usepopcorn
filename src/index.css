@@ -34,6 +34,7 @@ body {
 .nav-bar {
   display: grid;
   grid-template-columns: 1fr 1fr 1fr;
+  grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
   align-items: center;
   height: 7.2rem;
   padding: 0 3.2rem;
@@ -47,6 +48,7 @@ body {
   display: flex;
   gap: 2.4rem;
   justify-content: center;
+  flex-wrap: wrap;
 }
 
 .box {

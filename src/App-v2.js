@@ -8,16 +8,11 @@ const KEY = "60fed3fc";
 export default function App() {
   const [query, setQuery] = useState("");
   const [movies, setMovies] = useState([]);
- 
+  const [watched, setWatched] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState("");
   const [selectedId, setSelectedId] = useState(null);
 
-  // const [watched, setWatched] = useState([]);
-  const [watched, setWatched] = useState(function(){
-    const storedValue = localStorage.getItem("watched");
-    return JSON.parse(storedValue)
-  });
   function handleSelectMovie(id){
     setSelectedId(selectedId=>( id === selectedId ? null : id))
   }
@@ -27,9 +22,7 @@ export default function App() {
   }
 
   function handleAddWatched(movie){
-    setWatched(watched=>[...watched,movie]);
-
-    // localStorage.setItem("watched",JSON.stringify([...watched,movie]))
+    setWatched(watched=>[...watched,movie])
   }
 
   function handleDeleteWatched(id){
@@ -38,9 +31,7 @@ export default function App() {
     )
   }
 
-  useEffect(function(){
-    localStorage.setItem("watched",JSON.stringify(watched))
-  },[watched])
+  
 
   useEffect(() => {
     const controller = new AbortController()
@@ -212,6 +203,11 @@ function MovieDetails({ selectedId ,onCloseMovie,onAddWatched,watched}) {
   
   const {Title:title,Year:year,Poster:poster,Runtime:runtime,imdbRating,Plot:plot,Released:released,Actors:actors,Director:director,Genre:genre} = movie;
 
+
+  
+
+ 
+
   function handleAdd(){
     const newMovie = {
       imdbID:selectedId,
@@ -224,6 +220,9 @@ function MovieDetails({ selectedId ,onCloseMovie,onAddWatched,watched}) {
     }
     onAddWatched(newMovie);
     onCloseMovie()
+
+
+  
   }
   const callBack = (e)=>{
     if(e.code === "Escape") {
@@ -259,7 +258,8 @@ function MovieDetails({ selectedId ,onCloseMovie,onAddWatched,watched}) {
       document.title = "UsePopcorn"
     }
   },[title])
-  return <div className="details">
+  return (
+    <div className="details">
     { isLoading ? <Loader/> :
     <>
     <header>
@@ -275,6 +275,7 @@ function MovieDetails({ selectedId ,onCloseMovie,onAddWatched,watched}) {
 
     </div>
     </header>
+    
     <section>
       <div className="rating">
       
@@ -293,7 +294,8 @@ function MovieDetails({ selectedId ,onCloseMovie,onAddWatched,watched}) {
     </section>
     </>
 }
-    </div>;
+    </div>
+  )
 }
 function WatchedSummary({ watched }) {
   const avgImdbRating = average(watched.map((movie) => movie.imdbRating));
