@@ -1,70 +1,24 @@
-# Getting Started with Create React App
+usePopcorn - Movie Search and Rating App
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+usePopcorn is a React-based web application that allows users to search for movies and view their details. Users can also rate movies and keep track of their watched movies. The app utilizes the Open Movie Database (OMDb) API to fetch movie data and display it to users.
 
-## Available Scripts
+Features:
 
-In the project directory, you can run:
+Movie Search: Users can search for movies using the search bar. As they type, the app fetches relevant movie results from the OMDb API.
 
-### `npm start`
+Movie Details: When a user clicks on a movie from the search results, they can view the details of the selected movie, including the poster, title, year, genre, runtime, IMDb rating, plot, actors, and director.
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+Rating Movies: For movies that users have not watched yet, they can rate them using a star rating system. The user's rating is then stored in local storage.
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+Watched Movies: Users can add movies to their watched list by clicking the "Add to list" button. The watched list includes details such as IMDb rating, user rating, and runtime.
 
-### `npm test`
+Keyboard Shortcuts: The app includes keyboard shortcuts to enhance the user experience. For instance, pressing the "Enter" key focuses on the search bar, and pressing the "Escape" key closes the movie details modal.
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+Summary Statistics: The app displays summary statistics for the user's watched movies, including the total number of movies watched, average IMDb rating, average user rating, and average runtime.
 
-### `npm run build`
+Technologies Used:
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
-
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
-
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
-
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+React: The app is built using the React JavaScript library for creating user interfaces.
+Open Movie Database (OMDb) API: Used to fetch movie data based on user queries.
+Local Storage: Utilized to store user ratings and watched movies data locally in the browser.
+Please note that this description is a general overview of the usePopcorn app and its features. The app may have evolved and been updated since this description was written. For the latest version and complete codebase, please refer to the Git repository.
